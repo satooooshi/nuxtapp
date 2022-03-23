@@ -42,7 +42,7 @@ interface Task {
 export default defineComponent({
   setup() {
 
-    // state
+    //state
     const state = reactive({
       task: '',
       tasks: [] as Task[],

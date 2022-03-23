@@ -2,6 +2,8 @@
 <template>
 <v-app>
   <section class="container">
+    <a class="btn btn--orange" @click="getMsg" >PUSH {{msg}}</a>
+    <button href="" class="btn btn--orange" @click="getMsg" >PUSH {{msg}}</button>
     <h1>Todoリスト</h1>
     <div class="addArea">
       <input type="text" name="addName" v-model="content" placeholder="タスクを入力してください">
@@ -44,92 +46,79 @@
   </section>
 </v-app>
 </template>
-<script lang="ts">
-import { defineComponent, reactive, toRefs, ref, onMounted, useContext } from '@nuxtjs/composition-api'
+<script>
+import {mapState} from 'vuex';
 
-interface Task {
-  content: string
-  created: string
-  state: string
-}
-
-export default defineComponent({
-  setup() {
-
-    const context = useContext()
-    // state
-    const state = reactive({
-      content: '' as string,
-      display_todos: [
-        {content: 'テスト', created: '2020-04-30 17:00', state: '作業前'}, 
-        {content: 'コーディング', created: '2020-04-30 16:00', state: '作業中'},
-        {content: '環境構築', created: '2020-04-30 15:30', state: '完了'}
-      ] as Task[],
-      find_state:'' as string,
-      find_flag:false as boolean,
-      msg:''
-    })
-
-    // mounted
-    onMounted(() => {
-      console.log('Component is mounted!')
-      context.$axios.$get('http://httpbin.org/uuid')
-        .then(res =>{ console.log(res);})
-    })
-
-    
-
-
-    const insert = function() {
-      if(state.content != ''){
-          var d = new Date();
-          var fmt = d.getFullYear()
-                  + '-' + ('00' + (d.getMonth() + 1)).slice(-2)
-                  + '-' + ('00' + d.getDate()).slice(-2)
-                  + ' ' + ('00' + d.getHours()).slice(-2)
-                  + ':' + ('00' + d.getMinutes()).slice(-2);
-          state.display_todos.push({
-            content: state.content,
-            created: fmt.toString(),
-            state: '作業前'
-          })
-        state.content = '';
-      }
-    }
-    const remove = (todo:Task) => {
-            for(let i = 0; i < state.display_todos.length; i++) {
-              const ob = state.display_todos[i];
-              if(ob.content == todo.content && ob.created == todo.created) {
-                if(confirm('"' + ob.content + '"を削除しますか？')){
-                  state.display_todos.splice(i, 1);
-                  //console.log(state.display_todos.splice(i, 1))
-                  return;
-                }
-              }
-            }
-    }
-
-    const changeState = (todo:Task) => {
-
-    }
-
-    const flag_reset = () => {
-
-    }
-    const find = () => {
-
-    }
-
+export default {
+  //
+  data: function() {
     return {
-        ...toRefs(state),
-        insert,
-        remove,
-        changeState,
-        flag_reset,
-        find,
+      content:'', // v-model 
+      find_state:'',
+      find_flg:false,
+      // axios test
+      msg:'axios',
     }
   },
-})
+  //
+  computed: {
+    //  vuexからmapStateをインポートすることで、
+    // dataにストアのstateの中身を入れ、
+    // computedでtodosの中身が変わるたびに描写させるようにしています。
+    ...mapState(['todos']), 
+
+    // display filtered todos
+    display_todos:function(){
+      // find_flgがtrueならば、find_stateとstateが一致するタスクだけ表示し、
+      // そうでなければ全て表示します。
+      if(this.find_flg){
+        let arr = [];
+        // data is immutable now
+        let data = this.todos;
+        data.forEach(element =>{
+          if(element.state == this.find_state){
+            arr.push(element);
+          }
+        });
+        return arr;
+      }else{
+        return this.todos;
+      }
+    }
+  },
+  //
+  methods: {
+    insert: function() {
+      if(this.content != ''){
+        this.$store.commit('insert', {content: this.content});
+        this.content = '';
+      }
+    },
+    remove: function(todo) {
+      this.$store.commit('remove', todo)
+    },
+    changeState: function(todo){
+      this.$store.commit('changeState',todo)
+    },
+    find: function(findState){
+      this.find_state = findState;
+      this.find_flg = true;
+    },
+    flag_reset: function(){
+      this.find_flg = false;
+    },
+    // axios test
+    getMsg () {
+      this.$axios.$get('http://httpbin.org/uuid')
+        .then(res =>{ console.log(res); this.msg=res.uuid;})
+    },
+    // routing
+    movePage(){
+      this.$router.push({ path: `user/one` });
+    }
+  },
+  //
+}
 </script>
 <style>
 .button--yet {

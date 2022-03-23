@@ -84,3 +84,7 @@ https://commercejs.com/docs/sdk/getting-started/#installation
 npm install @chec/commerce.js @types/chec__commerce.js
 
 https://typescript.nuxtjs.org/ja/cookbook/components
+
+axios typescript nuxtjs
+https://dev.to/carlomigueldy/getting-started-with-nuxt-composition-api-typescript-417f
+
