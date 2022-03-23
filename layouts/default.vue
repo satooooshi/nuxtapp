@@ -118,7 +118,7 @@ export default defineComponent({
         const miniVariant = ref(false)
         const right = ref(false)
         const rightDrawer = ref(false)
-        const title = ref('Vuetify.js')
+        const title = ref('Nuxt2 + TypeScript + Composition API + Vuetify.js')
 
         return {
             clipped,

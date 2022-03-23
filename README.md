@@ -70,3 +70,17 @@ More information about the usage of this directory in [the documentation](https:
 
 
 # https://qiita.com/mmclsntr/items/15acb44ab1746f097a89
+How to run
+rm package-lock.json
+npm i
+npm run dev
+
+# composition API
+https://v3.ja.vuejs.org/guide/composition-api-introduction.html#%E3%81%AA%E3%81%9B%E3%82%99-composition-api-%E3%81%AA%E3%81%AE%E3%81%8B
+ref によるリアクティブな変数
+
+#commercejs 
+https://commercejs.com/docs/sdk/getting-started/#installation
+npm install @chec/commerce.js @types/chec__commerce.js
+
+https://typescript.nuxtjs.org/ja/cookbook/components
