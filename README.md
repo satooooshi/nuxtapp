@@ -87,4 +87,8 @@ https://typescript.nuxtjs.org/ja/cookbook/components
 
 axios typescript nuxtjs
 https://dev.to/carlomigueldy/getting-started-with-nuxt-composition-api-typescript-417f
+types/index.d.ts
+
+commercejs
+https://commercejs.com/docs/guides/nuxt-integration/#12-create-a-nuxt-plugin-for-commercejs
 

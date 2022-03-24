@@ -46,6 +46,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref, onMounted, useContext } from '@nuxtjs/composition-api'
+import commerce from "~/common/commerce";
 
 interface Task {
   content: string
@@ -75,6 +76,44 @@ export default defineComponent({
       console.log('Component is mounted!')
       context.$axios.$get('http://httpbin.org/uuid')
         .then(res =>{ console.log(res);})
+
+      // https://cloudpack.media/57935
+      interface Obj {
+        name: string;
+        age: number;
+      }
+      const myObj: Obj = {
+        name: "Hanako",
+      age: 18,
+      };
+      console.log(myObj)
+
+      type Location = string;
+      let location: Location = "Saitama";
+
+      const sampleFunc = (arg: string): string => {
+        return arg;
+      };
+      console.log(sampleFunc("hello world@!"))
+
+      interface posOptions {
+        xPos?: number; // xPos : number | undefined
+        yPos?: number; // xPos : number | undefined
+      }
+      const getPosition = (opts: posOptions) => {
+      // xPost と yPos が undefined になる可能性も考えた処理を書く必要がある
+      let xPos = opts.xPos === undefined ? 0 : opts.xPos;
+      let yPos = opts.yPos === undefined ? 0 : opts.yPos;
+      console.log("(${xPos}, ${yPos})")
+      console.log(xPos)
+      };
+      getPosition({}); // 引数がなくても関数を呼び出せる
+      getPosition({ xPos: 1 });
+      getPosition({ xPos: 1, yPos: 1 });
+
+      console.log(process.env.NUXT_ENV_CHEC_PUBLIC_API_KEY)
+      commerce.products.list().then((product) => console.log(product));
+
     })
 
     
