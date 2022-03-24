@@ -92,3 +92,8 @@ types/index.d.ts
 commercejs
 https://commercejs.com/docs/guides/nuxt-integration/#12-create-a-nuxt-plugin-for-commercejs
 
+
+
+ルーティング
+https://www.i-ryo.com/entry/2019/11/27/062247
+https://qiita.com/dcp/items/22af4b7f8225e34e3d05
