@@ -97,3 +97,12 @@ https://commercejs.com/docs/guides/nuxt-integration/#12-create-a-nuxt-plugin-for
 ルーティング
 https://www.i-ryo.com/entry/2019/11/27/062247
 https://qiita.com/dcp/items/22af4b7f8225e34e3d05
+
+fetch api
+https://zenn.dev/junki555/articles/4ab67fc78ce64c
+
+errorpage
+https://zenn.dev/kokota/articles/ffd20ddf228ef3
+/layouts/error.vueを作成すると、エラーが発生したときに、自動でそのページが表示されるようになります。
+https://hafilog.com/nuxt-error-page
+

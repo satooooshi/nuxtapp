@@ -113,6 +113,11 @@ export default defineComponent({
                 icon: 'mdi-chart-bubble',
                 title: 'Inspire',
                 to: '/inspire'
+            },
+            {
+                icon: 'mdi-chart-bubble',
+                title: 'products',
+                to: '/products'
             }
         ])
         const miniVariant = ref(false)

@@ -1,9 +1,9 @@
 <template>
 <div>
-  <h1>Customer list</h1>
+  <h1>Collections</h1>
   <ul>
-    <li v-for="customer, idx in customers" :key=idx>
-        <nuxt-link :to="'/customers/'+customer.id"  >{{ customer.email }}</nuxt-link>
+    <li v-for="category, idx in categories" :key=idx>
+        <nuxt-link :to="'/collections/'+category.id"  >{{ category.name }}</nuxt-link>
     </li>
   </ul>
 </div>
@@ -17,7 +17,7 @@ export default defineComponent({
         const context = useContext()
 
         const state = reactive({
-          customers: [] as any
+          categories: [] as any
         })
 
         const onClick = () => {
@@ -26,11 +26,11 @@ export default defineComponent({
 
         const fetchFunc = async () => {
             const url = new URL(
-              "https://api.chec.io/v1/customers"
+              "https://api.chec.io/v1/categories"
             ); 
 
             let headers = {
-                "X-Authorization": process.env.NUXT_ENV_CHEC_SECRET_API_KEY,
+                "X-Authorization": process.env.NUXT_ENV_CHEC_PUBLIC_API_KEY,
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             };
@@ -47,7 +47,7 @@ export default defineComponent({
             }
             return response.json()
           })
-          .then(json => {console.log(json);state.customers=json.data})
+          .then(json => {console.log(json);state.categories=json.data})
           .catch(err=>{
              console.error('Fetch API ネットワークエラー || error thrown because response NOT ok');
              return context.error({ statusCode: undefined, message: err })
