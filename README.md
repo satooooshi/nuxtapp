@@ -106,3 +106,22 @@ https://zenn.dev/kokota/articles/ffd20ddf228ef3
 /layouts/error.vueを作成すると、エラーが発生したときに、自動でそのページが表示されるようになります。
 https://hafilog.com/nuxt-error-page
 
+
+
+veautify テキストの配置位置を指定する方法
+https://into-the-program.com/vuetify-text-align/
+https://into-the-program.com/vuetify-font-size/
+
+スタイルガイド
+https://vuetifyjs.com/ja/styles/text-and-typography/
+https://jp.vuejs.org/v2/style-guide/index.html
+コンポーネント名は常に複数単語とするべきです。
+常に v-for に対しては key を使用してください。
+ JSと連動するCSS値は:styleで設定する
+ <style scoped>
+.pattern-2
+のようにscopedと-が必要！！
+アイテムの高さと幅はv-rowとv-colを使うと良い
+アイテムのmarginとpaddingはclassで変更できる
+https://masa-enjoy.com/vuetify-beginner#toc4
+

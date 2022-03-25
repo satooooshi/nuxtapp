@@ -8,18 +8,44 @@
          <button href=""  @click="onClick" >detail</button>
     </li>
   </ul>
+  <template>
+  <v-container class="grey lighten-5">
+    <v-row
+      :justify="start"
+    >
+      <v-col
+        v-for="product, idx in products"
+        :key="idx"
+        md="3"
+      >
+      <product-card/>
+      </v-col>
+    </v-row>
+    <cart-item/>
+    <cart-item/>
+    <cart-item/>
+
+  </v-container>
+</template>
 </div>
 </template>
 
+
+
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref, onMounted, useContext } from '@nuxtjs/composition-api'
+import CartItem from '~/components/CartItem.vue'
+
+// grid system
+// https://vuetifyjs.com/ja/components/grids/#section-521765b95411306e30e930c330d430f330b0
 
 export default defineComponent({
+  components: { CartItem },
     setup() {
         const context = useContext()
 
         const state = reactive({
-          products: [] as any
+          products: [] as any,
         })
 
         const onClick = () => {
